@@ -1,0 +1,11 @@
+<h1>Hello, <%= @user.name %>! Let's Make a profile!</h1>
+
+<%= form_for(@profile, url: user_profiles_path, html: {method: "post"}) do |f| %>
+<%= f.label :header %>
+<%= f.text_field :header %>
+<br>
+<%= f.label :bio %>
+<%= f.text_area :bio %>
+<br>
+<%= f.submit %>
+<%end %>
