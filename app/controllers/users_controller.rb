@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
-
-  def show
-    @user = User.find_by_id(params[:id])
-  end
-
-  def index
-  end
+  before_action :require_login, only: [:show, :index, :edit, :update]
 
   def new
     @user = User.new
@@ -22,6 +16,21 @@ class UsersController < ApplicationController
       redirect_to(new_user_path)
     end
   end
+
+  #for if current_user is logged in
+
+  def show
+    @user = current_user
+    @profile = @user.profile
+  end
+
+  def index
+    @users = User.all
+  end
+
+  def edit
+  end
+
 
   def update
   end

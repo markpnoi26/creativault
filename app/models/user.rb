@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_one :profile
   has_many :creations
   has_many :comments
+  # has_many :loved_creations
+  # has_many :creations, through: :loved_creations
   has_many :categories, through: :creations
 
 end

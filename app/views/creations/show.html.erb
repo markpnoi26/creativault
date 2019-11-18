@@ -1,0 +1,16 @@
+<h1>Creation page for <%= @creation.title %> </h1>
+
+<p><%= image_tag(@creation.image, size: "400x400") %></p>
+
+<p><%= @creation.description %></p>
+
+<p>Explore Other creators (creators index)</p>
+
+<p>Explore Creations by creators (creations index by creators)</p></p>
+
+<p>Explore Creations by category (creations index by category)</p>
+
+
+<p>Edit creation</p>
+
+<p><%= button_to('New Create!', new_user_creation_path(@user), {method: "get"}) %></p>

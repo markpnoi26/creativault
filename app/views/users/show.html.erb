@@ -1,2 +1,23 @@
-<h1><%= @user.name %></h1>
-<h2><%= @user.email %></h2>
+<h1>Profile page for <%= @user.name %> </h1>
+
+<p><%= image_tag(@profile.image, size: "400x400") %></p>
+
+<p><%= @profile.header %></p>
+
+<p><%= @profile.bio %></p>
+
+<p>Creations will go here</p>
+
+<p>View my Creations index (if logged in as curernt user)</p>
+
+<p>Explore Other creators (creators index)</p>
+
+<p>Explore Creations by creators (creations index by creators)</p></p>
+
+<p>Explore Creations by category (creations index by category)</p>
+
+<p>Edit User Information - edit user email, password</p>
+
+<p>Update profile - edit profile page</p>
+
+<p><%= button_to('New Create!', new_user_creation_path(@user), {method: "get"}) %></p>

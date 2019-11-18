@@ -9,5 +9,7 @@
 
   <body>
     <%= yield %>
+
+    <%= button_to('Log Out - temp', destroy_session_path, {method: "post"}) %>
   </body>
 </html>
