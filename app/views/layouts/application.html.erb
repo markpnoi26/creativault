@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Creativault</title>
+    <title>CreatiVault</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
   </head>
 
   <body>
+
     <%= yield %>
 
-    <%= button_to('New Create!', new_user_creation_path(user_currently_logged_in), {method: "get"}) if user_currently_logged_in %>
-    <%= button_to('Create!', new_user_creation_path(user_currently_logged_in), {method: "get"}) if user_currently_logged_in %>
-    <%= button_to('See All Creations', creations_path, {method: "get"}) if user_currently_logged_in %>
-    <%= button_to('See All Your Creations', user_creations_path(user_currently_logged_in), {method: "get"}) if user_currently_logged_in %>
-    <%= button_to('Visit Other Creators', users_path, {method: "get"}) if user_currently_logged_in %>
-    <%= button_to('Log Out', destroy_session_path, {method: "post"}) if user_currently_logged_in %>
+    <% if user_currently_logged_in %>
+      <%= button_to('Create Something', new_user_creation_path(user_currently_logged_in), {method: "get"})%>
+      <%= button_to('See All Creations', creations_path, {method: "get"})%>
+      <%= button_to('Your Creations', user_creations_path(user_currently_logged_in), {method: "get"})%>
+      <%= button_to('Visit Other Creators', users_path, {method: "get"})%>
+      <%= button_to('Log Out', destroy_session_path, {method: "post"})%>
+    <% end %>
+
   </body>
 </html>
