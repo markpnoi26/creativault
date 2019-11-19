@@ -10,6 +10,11 @@
   <body>
     <%= yield %>
 
-    <%= button_to('Log Out - temp', destroy_session_path, {method: "post"}) %>
+    <%= button_to('New Create!', new_user_creation_path(user_currently_logged_in), {method: "get"}) if user_currently_logged_in %>
+    <%= button_to('Create!', new_user_creation_path(user_currently_logged_in), {method: "get"}) if user_currently_logged_in %>
+    <%= button_to('See All Creations', creations_path, {method: "get"}) if user_currently_logged_in %>
+    <%= button_to('See All Your Creations', user_creations_path(user_currently_logged_in), {method: "get"}) if user_currently_logged_in %>
+    <%= button_to('Visit Other Creators', users_path, {method: "get"}) if user_currently_logged_in %>
+    <%= button_to('Log Out', destroy_session_path, {method: "post"}) if user_currently_logged_in %>
   </body>
 </html>

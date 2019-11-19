@@ -1,2 +1,18 @@
-<h1><%= "Index for all Users" unless params[:user_id] %></h1>
-<h1><%= "Index for this particular User" if params[:user_id] %></h1>
+<h1><%= "Everyone's Creation" unless @user %></h1>
+<h1><%= "All Your Creations, #{@user.name}" if @user %></h1>
+
+<%if @user %>
+  <% @user.creations.each do |creation| %>
+  <ul>
+    <li><%=link_to(creation.title, user_creation_path(@user, creation)) %></li>
+    <%=image_tag(creation.image, size: "40x40")  %>
+  </ul>
+  <% end %>
+<% else %>
+  <% Creation.all.each do |creation| %>
+    <ul>
+      <li><%=link_to(creation.title, user_creation_path(creation.user, creation)) %></li>
+      <%=image_tag(creation.image, size: "40x40")  %>
+    </ul>
+  <% end %>
+<% end %>

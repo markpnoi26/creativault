@@ -5,4 +5,5 @@ class Profile < ApplicationRecord
   def user_name
     self.user.name
   end
+  
 end

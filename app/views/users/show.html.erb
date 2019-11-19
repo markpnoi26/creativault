@@ -6,7 +6,10 @@
 
 <p><%= @profile.bio %></p>
 
-<p>Creations will go here</p>
+<p><%= button_to('Update Profile', edit_user_profile_path(@user, @profile), {method: "get"})%></p>
+
+
+<!-- <p>Creations will go here</p>
 
 <p>View my Creations index (if logged in as curernt user)</p>
 
@@ -16,8 +19,4 @@
 
 <p>Explore Creations by category (creations index by category)</p>
 
-<p>Edit User Information - edit user email, password</p>
-
-<p>Update profile - edit profile page</p>
-
-<p><%= button_to('New Create!', new_user_creation_path(@user), {method: "get"}) %></p>
+<p>Edit User Information - edit user email, password, etc.</p> -->

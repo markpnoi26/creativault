@@ -26,3 +26,5 @@
 <br>
 <%= f.submit("Create Account") %>
 <%end %>
+
+<%= button_to('Sign In', root_path, {method: "get"}) unless user_currently_logged_in%>

@@ -1,16 +1,15 @@
-<h1>Creation page for <%= @creation.title %> </h1>
+<h1><%= @creation.title %> </h1>
 
 <p><%= image_tag(@creation.image, size: "400x400") %></p>
 
+<p>Description</p>
 <p><%= @creation.description %></p>
 
-<p>Explore Other creators (creators index)</p>
+<p>Category:</p>
+<p><%= @creation.category.name %></p>
 
-<p>Explore Creations by creators (creations index by creators)</p></p>
+<p>by: <%=link_to(@creation.user.name, user_path(@creation.user))%></p>
+<p><%= image_tag(@creation.user_profile.image, size: "40x40")%></p>
 
-<p>Explore Creations by category (creations index by category)</p>
 
-
-<p>Edit creation</p>
-
-<p><%= button_to('New Create!', new_user_creation_path(@user), {method: "get"}) %></p>
+<p><%= button_to('Edit Creation!', edit_user_creation_path(@creation.user, @creation), {method: "get"}) unless @user != @creation.user %></p>

@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :creations, only:[:index, :show]
 
   resources :users do
-    resources :creations, only:[:index, :show, :new, :edit, :create, :destroy]
-    resources :profiles, only:[:new, :edit, :create]
+    resources :creations
+    resources :profiles, only:[:new, :edit, :create, :update]
   end
 
 end

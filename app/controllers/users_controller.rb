@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   #for if current_user is logged in
 
   def show
-    @user = current_user
+    @user = User.find_by_id(params[:id])
     @profile = @user.profile
   end
 

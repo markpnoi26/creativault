@@ -1,0 +1,20 @@
+<h1>Hello <%= @user.name %>, what would you like to edit?</h1>
+
+<%= form_for(@profile, url: user_profile_path(@user, @profile), html: {method: "patch"}) do |f| %>
+<%= image_tag(@profile.image, size:"400x400")%>
+<br>
+<%= f.label("Upload a new Profile Image") %>
+<br>
+<%= f.file_field :image %>
+<br>
+<%= f.label :header %>
+<br>
+<%= f.text_field :header %>
+<br>
+<%= f.label :bio %>
+<br>
+<%= f.text_area :bio %>
+<br>
+<%= f.submit %>
+<%end %>
+<%= button_to('Back to Profile', user_path(@user), {method: "get"})%>

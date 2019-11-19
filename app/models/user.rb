@@ -15,4 +15,7 @@ class User < ApplicationRecord
   # has_many :creations, through: :loved_creations
   has_many :categories, through: :creations
 
+  def profile_image
+    self.profile.image
+  end
 end
