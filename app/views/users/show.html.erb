@@ -1,9 +1,9 @@
-<h1>Profile page for <%= @user.name %> </h1>
+<h1>Profile page for <%= @profile.user.name %> </h1>
 
-<p><%= image_tag(@profile.image, size: "400x400") %></p>
+<p><%= image_tag(@profile.image.variant(combine_options: { resize: "400x400>", extent: "400x400", background: "grey", gravity: "center"})) %></p>
 
 <p><%= @profile.header %></p>
 
 <p><%= @profile.bio %></p>
 
-<p><%= button_to('Update Profile', edit_user_profile_path(@user, @profile), {method: "get"})%></p>
+<p><%= button_to('Update Profile', edit_user_profile_path(@user, @profile), {method: "get"}) unless @user != @profile.user%></p>

@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   #for if current_user is logged in
 
   def show
-    @user = User.find_by_id(params[:id])
-    @profile = @user.profile
+    @user = current_user
+    @profile = Profile.find_by_user_id(User.find_by_id(params[:id]))
   end
 
   def index
@@ -29,15 +29,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    #Edit User information like password and Name
   end
 
 
   def update
+    #Update User information like password and Name
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

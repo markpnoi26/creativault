@@ -19,6 +19,8 @@ class CreationsController < ApplicationController
 
   def show
     @user = current_user
+    @comment = Comment.new
+    @comments = Comment.all
     @creation = Creation.find_by_id(params[:id])
   end
 
