@@ -14,7 +14,9 @@ class ProfilesController < ApplicationController
 
   def edit
     @user = current_user
-    @profile = Profile.find_by(user: current_user)
+    @profile = Profile.find_by(id: params[:id])
+    flash[:edit_error] = "Unauthorized User"
+    redirect_to(users_path) unless @user == @profile.user || @user.admin
   end
 
   def update
