@@ -6,7 +6,7 @@
 
 <%= button_to('Flag', flagged_path(@creation), {method: "post"}) unless @user == @creation.user %>
 
-<h3>Loved by <%= pluralize(@creation.heart_count, "user") %> <%= "(including you)" if @user.loved.include?(@creation)%> </h3>
+<h3>Loved by <%= pluralize(@creation.loved_by.count, "user") %> <%= "(including you)" if @user.loved.include?(@creation)%> </h3>
 <h2>Description</h2>
 <p><%= @creation.description %></p>
 

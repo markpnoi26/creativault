@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# gem "omniauth-rails_csrf_protection"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
@@ -29,8 +31,14 @@ gem 'mini_magick'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'omniauth'
-gem 'omniauth-pinterest'
+#omniauth
+# gem 'omniauth'
+# gem 'omniauth-oauth2'
+# gem 'omniauth-github'
+gem 'thin'
+# gem 'figaro'
+gem 'dotenv-rails'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

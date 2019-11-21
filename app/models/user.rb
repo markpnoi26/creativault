@@ -16,4 +16,5 @@ class User < ApplicationRecord
   def profile_image
     self.profile.image
   end
+
 end

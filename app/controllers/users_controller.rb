@@ -21,7 +21,12 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @profile = Profile.find_by_user_id(User.find_by_id(params[:id]))
+    # pry
+    if !@user.profile
+      redirect_to(edit_user_profile_path(@user), @user.profile)
+    else
+      @profile = Profile.find_by_user_id(User.find_by_id(params[:id]))
+    end
   end
 
   def index

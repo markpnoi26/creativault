@@ -1,6 +1,6 @@
 <h1>Profile page for <%= @profile.user.name %> </h1>
 
-<p><%= image_tag(@profile.image.variant(combine_options: { resize: "400x400>", extent: "400x400", background: "grey", gravity: "center"})) %></p>
+<p><%= image_tag(@profile.image.variant(combine_options: { resize: "400x400>", extent: "400x400", background: "grey", gravity: "center"})) if @profile.image%></p>
 
 <p><%= @profile.header %></p>
 

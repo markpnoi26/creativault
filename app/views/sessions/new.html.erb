@@ -13,3 +13,4 @@
 <%end %>
 
 <%= button_to('Sign Up', new_user_path, {method: "get"}) unless user_currently_logged_in %>
+<%= link_to('Sign in with Google', "/auth/google_oauth2") %>
