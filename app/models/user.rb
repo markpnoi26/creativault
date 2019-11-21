@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   has_many :loved_creations
   has_many :loved, through: :loved_creations, source: :creation
+
+  has_many :flagged_creations
+  has_many :flagged, through: :flagged_creations, source: :creation
+
   has_many :categories, through: :creations
 
   def profile_image

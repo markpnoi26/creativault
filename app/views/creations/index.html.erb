@@ -1,10 +1,10 @@
 <h1><%= "Everyone's Creation" unless @user %></h1>
-<h1><%= "All Creations by #{@user.name}" if @user %></h1>
+<h1><%= "All Creations by #{@specific_user.name}" if @specific_user %></h1>
 
 <div>
   <h3>Filter Creations:</h3>
-  <% if @user %>
-    <%= form_tag("/users/#{@user.id}/creations", method: "get") do %>
+  <% if @specific_user %>
+    <%= form_tag("/users/#{@specific_user.id}/creations", method: "get") do %>
       <%= select_tag "category", options_from_collection_for_select(@category, "id", "name"), include_blank: true %>
       <%= submit_tag "Filter" %>
     <% end %>
@@ -15,11 +15,18 @@
     <% end %>
   <% end %>
 </div>
+
 <!-- Will need to refactor for sure! This thing is Ugly! -->
 
 <% @creations.each do |creation| %>
   <div>
     <h3><%=link_to(creation.title, creation_path(creation)) %></h3>
-    <%=image_tag(creation.image, size: "40x40")  %>
+    <%=image_tag(creation.image, size: "40x40") %>
+    <% if @user.admin  %>
+    <ul>
+      <li>Loved: <%= creation.loved_by.count %></li>
+      <li>Flagged: <%= creation.flagged_by.count %></li>
+    </ul>
+    <% end %>
   </div>
 <% end %>

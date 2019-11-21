@@ -1,9 +1,9 @@
 <h1>Profile page for <%= @profile.user.name %> </h1>
-
+<h2><%= flash[:error] if flash[:error] %></h2>
 <p><%= image_tag(@profile.image.variant(combine_options: { resize: "400x400>", extent: "400x400", background: "grey", gravity: "center"})) if @profile.image%></p>
 
 <p><%= @profile.header %></p>
 
 <p><%= @profile.bio %></p>
 
-<p><%= button_to('Update Profile', edit_user_profile_path(@user, @profile), {method: "get"}) unless @user != @profile.user%></p>
+<p><%= button_to('Update Profile', edit_user_profile_path(@user, @profile), {method: "get"}) if @user == @profile.user || @user.admin%></p>

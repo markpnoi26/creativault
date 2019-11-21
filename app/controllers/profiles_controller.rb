@@ -20,9 +20,9 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.find_by(user: current_user)
+    @profile = Profile.find_by(id: params[:id])
     @profile.update(profile_params)
-    redirect_to(user_path(current_user))
+    redirect_to(user_path(@profile.user))
   end
 
   private

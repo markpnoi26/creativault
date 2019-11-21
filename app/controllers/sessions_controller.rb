@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
       @user = User.find_by_email(params[:user][:email])
       if @user && @user.authenticate(params[:user][:password])
         session[:user_id] = @user.id
-        redirect_to(user_path(current_user))
+        if @user.profile
+          redirect_to(user_path(current_user))
+        else
+          redirect_to(new_user_profile_path(@user))
+        end
       else
         flash[:error] = "User Cannot be Authenticated"
         redirect_to(new_session_path)

@@ -2,13 +2,14 @@ class CreationsController < ApplicationController
   before_action :require_login
 
   def index
-    @user = User.find_by_id(params[:user_id])
+    @user = current_user
+    @specific_user = User.find_by_id(params[:user_id])
     @category = Category.all
-    if @user
+    if @specific_user
       if !params[:category].blank?
-        @creations = @user.creations.where(category_id: params[:category])
+        @creations = @specific_user.creations.where(category_id: params[:category])
       else
-        @creations = @user.creations
+        @creations = @specific_user.creations
       end
     elsif !params[:category].blank?
       @creations = Creation.where(category_id: params[:category])
@@ -49,7 +50,6 @@ class CreationsController < ApplicationController
   def update_heart_count
     @user = current_user
     @creation = creation_by_id
-    @creation.increase_heart_count
     @user.loved << @creation unless @user.loved.include?(@creation)
     redirect_to(creation_path(@creation))
   end
@@ -57,7 +57,7 @@ class CreationsController < ApplicationController
   def update_flag_count
     @user = current_user
     @creation = creation_by_id
-    @creation.increase_flag_count
+    @user.flagged << @creation unless @user.flagged.include?(@creation)
     redirect_to(creation_path(@creation))
   end
 

@@ -11,4 +11,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_an_admin?
+    current_user.admin
+  end
+
+  def require_admin
+    @user = current_user
+    unless @user.admin
+      flash[:error] = "You do not have admin privilages."
+      redirect_to(user_path(@user))
+    end
+  end
+  
 end

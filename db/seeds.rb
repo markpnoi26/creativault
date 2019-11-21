@@ -11,3 +11,6 @@ categories = ["Crafts", "Custom Build", "Fashion", "Arts", "Building", "Tech", "
 categories.each do |category|
   Category.find_or_create_by(name: category)
 end
+
+
+admin = User.create(name: "admin", email: "admin@admin.com", password: "admin", admin: true)

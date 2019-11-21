@@ -4,9 +4,10 @@
 
 <%= button_to('Love!', loved_path(@creation), {method: "post"}) unless @user == @creation.user || @user.loved.include?(@creation)%>
 
-<%= button_to('Flag', flagged_path(@creation), {method: "post"}) unless @user == @creation.user %>
+<%= button_to('Flag', flagged_path(@creation), {method: "post"}) unless @user == @creation.user || @user.flagged.include?(@creation)%>
 
 <h3>Loved by <%= pluralize(@creation.loved_by.count, "user") %> <%= "(including you)" if @user.loved.include?(@creation)%> </h3>
+<h3><%= "(Flagged by You)" if @user.flagged.include?(@creation)%> </h3>
 <h2>Description</h2>
 <p><%= @creation.description %></p>
 
@@ -16,4 +17,4 @@
 <p>by: <%=link_to(@creation.user.name, user_path(@creation.user))%></p>
 <p><%= image_tag(@creation.user_profile.image.variant(combine_options: { resize: "40x40>", extent: "40x40", background: "grey", gravity: "center"}))%></p>
 
-<p><%= button_to('Edit Creation!', edit_user_creation_path(@creation.user, @creation), {method: "get"}) unless @user != @creation.user %></p>
+<p><%= button_to('Edit Creation!', edit_user_creation_path(@creation.user, @creation), {method: "get"}) if @user == @creation.user || @user.admin%></p>

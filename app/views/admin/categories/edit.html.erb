@@ -1,0 +1,7 @@
+<h1>Edit Category</h1>
+<%= form_for(@category, url: admin_category_path(@category), html: {method: "patch"}) do |f| %>
+<%= f.label("Category Name") %>
+<%= f.text_field :name %>
+<%= f.submit("Edit Category") %>
+<% end %>
+<p><%= button_to('Delete Category', admin_category_path(@category), {method: "delete"}) %></p>

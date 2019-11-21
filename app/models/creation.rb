@@ -4,6 +4,8 @@ class Creation < ApplicationRecord
   has_one_attached :image
   has_many :loved_creations
   has_many :loved_by, through: :loved_creations, source: :user
+  has_many :flagged_creations
+  has_many :flagged_by, through: :flagged_creations, source: :user
 
   def user_profile
     self.user.profile
