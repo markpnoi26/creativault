@@ -1,27 +1,33 @@
-<h1>Sign up</h1>
+<div class="w3-modal-content w3-margin-top" style="padding:32px">
+  <div class="w3-white w3-margin">
+     <div class="w3-container w3-padding w3-black">
+       <h1 class="w3-center">Create an account with Us</h1>
+     </div>
+   <div class="w3-container w3-white w3-margin-top">
+     <%if flash[:errors] %>
+      <% flash[:errors].each do |alert| %>
+        <p class="w3-red w3-margin-bottom w3-center"><%= alert %></p>
+      <% end %>
+    <% end %>
 
-<%if flash[:errors] %>
-<% flash[:errors].each do |alert| %>
-  <ol>
-    <li><%= alert %></li>
-  </ol>
-<% end %>
-<% end %>
 
-<%= form_for(@user) do |f| %>
-<%= f.label(:name) %>
-<%= f.text_field(:name) %>
-<br>
-<%= f.label(:email) %>
-<%= f.text_field(:email) %>
-<br>
-<%= f.label(:password) %>
-<%= f.password_field(:password) %>
-<br>
-<%= f.label(:password_confirmation) %>
-<%= f.password_field(:password_confirmation) %>
-<br>
-<%= f.submit("Create Account") %>
-<%end %>
+      <%= form_for(@user) do |f| %>
+      <%= f.label("Name") %>
+      <%= f.text_field(:name, class: "w3-input w3-border", placeholder: "Enter Name") %>
+      <br>
+      <%= f.label(:email) %>
+      <%= f.text_field(:email, class: "w3-input w3-border", placeholder: "Enter Email") %>
+      <br>
+      <%= f.label(:password) %>
+      <%= f.password_field(:password, class: "w3-input w3-border", placeholder: "Password") %>
+      <br>
+      <%= f.label(:password_confirmation) %>
+      <%= f.password_field(:password_confirmation, class: "w3-input w3-border", placeholder: "Password Confirmation") %>
+      <br>
+      <%= f.submit("Create Account", class: "w3-button w3-block w3-blue w3-margin") %>
+      <%end %>
 
-<%= button_to('Sign In', root_path, {method: "get"}) unless user_currently_logged_in%>
+      <%= button_to('Already have an Account? Sign in', root_path, {method: "get", class: "w3-button w3-block w3-margin"}) unless user_currently_logged_in%>
+
+    </div>
+  </div>

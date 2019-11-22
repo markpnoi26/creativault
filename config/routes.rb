@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'creation/:id/flagged', to: 'creations#update_flag_count', as: 'flagged'
 
   resources :users do
-    resources :creations, only:[:index, :new, :create, :edit, :update]
+    resources :creations, only:[:index, :new, :create, :edit, :update, :delete]
     resources :profiles, only:[:new, :edit, :create, :update]
   end
 

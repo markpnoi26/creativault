@@ -1,16 +1,20 @@
-<h1>Sign in</h1>
-
-<h3><%= flash[:error] if flash[:error] %></h3>
-
-<%= form_for(@user, :url => {:controller => 'sessions', :action => "create"}) do |f| %>
-<%= f.label(:email) %>
-<%= f.text_field(:email) %>
-<br>
-<%= f.label(:password) %>
-<%= f.password_field(:password) %>
-<br>
-<%= f.submit("Sign In") %>
-<%end %>
-
-<%= button_to('Sign Up', new_user_path, {method: "get"}) unless user_currently_logged_in %>
-<%= link_to('Sign in with Google', "/auth/google_oauth2") %>
+<div class="w3-modal-content w3-margin-top" style="padding:32px">
+  <div class="w3-white w3-margin">
+     <div class="w3-container w3-padding w3-black">
+       <h3 class="w3-center">Sign In</h3>
+     </div>
+   <div class="w3-container w3-white w3-margin-top">
+      <p class="w3-red w3-margin-bottom w3-center"><%= flash[:error] if flash[:error] %></p>
+      <%= form_for(@user, :url => {:controller => 'sessions', :action => "create"}) do |f| %>
+      <%= f.label("Email:") %>
+      <%= f.text_field(:email, class: "w3-input w3-border", placeholder: "Enter e-mail") %>
+      <br>
+      <%= f.label("Password:") %>
+      <%= f.password_field(:password, class: "w3-input w3-border", placeholder: "Enter password") %>
+      <br>
+      <%= f.submit("Sign In", class: "w3-button w3-block w3-blue w3-margin") %>
+      <%end %>
+      <%= button_to('Google Sign In', "/auth/google_oauth2", {class: "w3-button w3-block w3-light-grey w3-margin"})%>
+      <%= button_to('or Sign Up', new_user_path, {method: "get", class: "w3-button w3-block w3-light-grey w3-margin"})%>
+  </div>
+</div>
