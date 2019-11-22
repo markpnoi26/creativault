@@ -1,6 +1,6 @@
 <h1>Check out all the Creators</h1>
 <h2> <%= flash[:edit_error] if flash[:edit_error] %></h2>
 <% @users.each do |user|%>
-  <h2><%= user.name %></h2>
-  <%= link_to(image_tag(user.profile_image, size:"50x50"), user_path(user)) %>
+  <h2><%= user.name if user.profile %></h2>
+  <%= link_to(image_tag(user.profile_image, size:"50x50", alt: "no image"), user_path(user)) if user.profile %>
 <% end %>

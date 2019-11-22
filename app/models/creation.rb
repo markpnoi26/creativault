@@ -1,4 +1,9 @@
 class Creation < ApplicationRecord
+
+  validates :image, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
+  
   belongs_to :category
   belongs_to :user
   has_one_attached :image

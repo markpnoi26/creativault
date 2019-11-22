@@ -1,20 +1,29 @@
-<h1>Hello <%= @user.name %>, what would you like to edit?</h1>
-
-<%= form_for(@profile, url: user_profile_path(@user, @profile), html: {method: "patch"}) do |f| %>
-<%= image_tag(@profile.image, size:"400x400")%>
-<br>
-<%= f.label("Upload a new Profile Image") %>
-<br>
-<%= f.file_field :image %>
-<br>
-<%= f.label :header %>
-<br>
-<%= f.text_field :header %>
-<br>
-<%= f.label :bio %>
-<br>
-<%= f.text_area :bio %>
-<br>
-<%= f.submit %>
-<%end %>
-<%= button_to('Back to Profile', user_path(@user), {method: "get"})%>
+<div class="w3-modal-content w3-margin-top" style="max-width:600px">
+  <div class="w3-white w3-margin">
+    <div class="w3-container w3-white w3-margin-top">
+      <div class="w3-center">
+        <h3>Edit Profile</h3>
+      </div>
+      <div>
+        <%= image_tag(@profile.image.variant(combine_options: { resize: "1200x1200>", background: "grey", gravity: "center"}), class: "w3-image w3-center")%>
+        <%= form_for(@profile, url: user_profile_path(@user, @profile), html: {method: "patch"}) do |f| %>
+        <br>
+        <%= f.label("Update Photo:") %>
+        <br>
+        <%= f.file_field(:image, class: "w3-block w3-margin") %>
+        <br>
+        <%= f.label("Header:") %>
+        <br>
+        <%= f.text_field(:header, class: "w3-input w3-border", placeholder: "Enter a new Header") %>
+        <br>
+        <%= f.label("About Me:") %>
+        <br>
+        <%= f.text_area(:bio, class: "w3-input w3-border", placeholder: "Write about Yourself", rows: "20" ) %>
+        <br>
+        <%= f.submit("Make Changes", class: "w3-button w3-block w3-blue") %>
+        <%end %>
+        <%= button_to('Back to Profile', user_path(@user), {method: "get", class: "w3-button w3-block"})%>
+        </div>
+      </div>
+    </div>
+  <hr>

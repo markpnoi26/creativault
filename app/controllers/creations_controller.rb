@@ -29,10 +29,16 @@ class CreationsController < ApplicationController
   end
 
   def create
-    @creation = Creation.create(creation_params)
-    @creation.user = current_user
-    @creation.save
-    redirect_to(creation_path(@creation))
+    # edit this part for validations!
+    @creation = Creation.new(creation_params)
+    if @creation.valid?
+      @creation.user = current_user
+      @creation.save
+      redirect_to(creation_path(@creation))
+    else
+      flash[:errors] = @creation.errors.full_messages
+      redirect_to(new_user_creation(current_user))
+    end
   end
 
   def edit

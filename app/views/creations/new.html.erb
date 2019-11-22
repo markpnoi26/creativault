@@ -1,20 +1,32 @@
-<h1>Hello <%= @user.name %>! New Creation!</h1>
-
-<%= form_for(@creation, url: user_creations_path, html: {method: "post"}) do |f| %>
-<%= f.label("Creation Image") %>
-<br>
-<%= f.file_field :image %>
-<br>
-<%= f.label :title %>
-<br>
-<%= f.text_field :title %>
-<br>
-<%= f.label :description %>
-<br>
-<%= f.text_area :description %>
-<br>
-<%= f.label(:category) %>
-<%= f.collection_select(:category_id, Category.all, :id, :name) %>
-<br>
-<%= f.submit("Create This") %>
-<%end %>
+<div class="w3-modal-content w3-margin-top" style="max-width:600px">
+  <div class="w3-white w3-margin">
+    <div class="w3-container w3-white w3-margin-top">
+      <div class="w3-center">
+        <h3>Welcome <%= @user.name %>! Create Something Here!</h3>
+      </div>
+      <div>
+        <%= form_for(@creation, url: user_creations_path, html: {method: "post"}) do |f| %>
+        <br>
+        <%= f.label("Upload Photo:") %>
+        <br>
+        <%= f.file_field(:image, class: "w3-block w3-margin") %>
+        <br>
+        <%= f.label("Title of your Work:") %>
+        <br>
+        <%= f.text_field(:title, class: "w3-input w3-border", placeholder: "Title of your Work") %>
+        <br>
+        <%= f.label("Category:") %>
+        <br>
+        <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+        <br>
+        <br>
+        <%= f.label("Description about it:") %>
+        <br>
+        <%= f.text_area(:description, class: "w3-input w3-border", placeholder: "Write about your creation", rows: "20" ) %>
+        <br>
+        <%= f.submit("Create This!", class: "w3-button w3-block w3-blue") %>
+        <%end %>
+        </div>
+      </div>
+    </div>
+  <hr>

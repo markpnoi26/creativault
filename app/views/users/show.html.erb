@@ -2,7 +2,7 @@
   <div class="w3-row w3-padding">
     <header class="w3-display-container w3-wide w3-padding" id="home">
       <%= image_tag(@profile.image.variant(combine_options: { resize: "1200x1200>", background: "grey", gravity: "center"}), class: "w3-image w3-center", width: "1200", height: "1200")%>
-        <div class="w3-display-left w3-padding-large">
+        <div class="w3-display-middlebottom w3-padding-large w3-dark-grey">
           <h1 class="w3-jumbo w3-text-white w3-hide-small"><b><%= @profile.user.name %></b></h1>
           <h2 class="w3-red"><%= flash[:error] if flash[:error] %></h2>
           <h6><%= button_to('Update Profile', edit_user_profile_path(@user, @profile), {method: "get", class: "w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off"}) if @user == @profile.user || @user.admin%></h6>
@@ -10,7 +10,8 @@
     </header>
     <div class="w3-white w3-margin l6">
       <div class="w3-container w3-black">
-        <h1>About Me:</h1>
+        <h1> <strong><%= @profile.header %></strong></h1>
+        <h5> About Me: </h5>
         <p><%= @profile.bio %></p>
       </div>
     </div>

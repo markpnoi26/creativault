@@ -2,14 +2,22 @@ class ProfilesController < ApplicationController
 
   def new
     @user = current_user
-    @profile = Profile.create(user: current_user)
-    #could explore doing a nested attributes here.
+    @profile = Profile.new(user: current_user)
+    # could explore doing a nested attributes here.
+    # may need to change profile to new, to prevent it from redirecting without a photo
   end
 
   def create
-    @profile = Profile.find_by(user: current_user)
-    @profile.update(profile_params)
-    redirect_to(user_path(current_user))
+    #add new validations
+    @profile = Profile.new(profile_params)
+    if @profile.valid?
+      @profile.update(user: current_user)
+      @profile.save(profile_params)
+      redirect_to(user_path(current_user))
+    else
+      flash[:errors] = @profile.errors.full_messages
+      redirect_to(new_user_profile_path(current_user))
+    end
   end
 
   def edit
