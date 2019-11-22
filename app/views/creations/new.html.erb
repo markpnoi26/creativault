@@ -4,6 +4,11 @@
       <div class="w3-center">
         <h3>Welcome <%= @user.name %>! Create Something Here!</h3>
       </div>
+      <%if flash[:errors] %>
+       <% flash[:errors].each do |alert| %>
+         <p class="w3-red w3-margin-bottom w3-center"><%= alert %></p>
+       <% end %>
+       <% end %>
       <div>
         <%= form_for(@creation, url: user_creations_path, html: {method: "post"}) do |f| %>
         <br>

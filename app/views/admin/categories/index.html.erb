@@ -1,4 +1,8 @@
-<h1>Categories</h1>
+<h1> Admin Features: </h1>
+<p> As an admin, you can: edit creations, edit profiles, add/edit/delete categories, and see flagged posts.</p>
+<p> As an admin, you cannot: create new creations for other users, and create new profiles for other creators.</p>
+
+<h1>Categories: </h1>
 <ol>
   <% @categories.each do |category| %>
   <li><%= category.name %> <%= link_to("Edit", edit_admin_category_path(category)) %></li>

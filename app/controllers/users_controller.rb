@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     @user = current_user
     # pry
     if !@user.profile
-      @user.profile = 
-      redirect_to(edit_user_profile_path(@user), @user.profile)
+      flash[:errors] = ['You must have your own profile to view others\'']
+      redirect_to(new_user_profile_path(@user))
     else
       @profile = Profile.find_by_user_id(User.find_by_id(params[:id]))
     end

@@ -25,19 +25,23 @@ class CreationsController < ApplicationController
 
   def new
     @user = current_user
+    if !@user.profile
+      flash[:errors] = ['You must have a profile to Create Something.']
+      redirect_to(new_user_profile_path(@user))
+    end
     @creation = Creation.new(user: current_user)
   end
 
   def create
     # edit this part for validations!
     @creation = Creation.new(creation_params)
+    @creation.user = current_user
     if @creation.valid?
-      @creation.user = current_user
       @creation.save
       redirect_to(creation_path(@creation))
     else
       flash[:errors] = @creation.errors.full_messages
-      redirect_to(new_user_creation(current_user))
+      redirect_to(new_user_creation_path(current_user))
     end
   end
 

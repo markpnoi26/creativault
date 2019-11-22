@@ -10,9 +10,9 @@ class ProfilesController < ApplicationController
   def create
     #add new validations
     @profile = Profile.new(profile_params)
+    @profile.user = current_user
     if @profile.valid?
-      @profile.update(user: current_user)
-      @profile.save(profile_params)
+      @profile.save
       redirect_to(user_path(current_user))
     else
       flash[:errors] = @profile.errors.full_messages
