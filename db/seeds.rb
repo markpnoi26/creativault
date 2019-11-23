@@ -13,4 +13,4 @@ categories.each do |category|
 end
 
 
-admin = User.create(name: "admin", email: "admin@admin.com", password: "admin", admin: true)
+admin = User.create(name: "CreatiVault Administrator", email: "admin@admin.com", password: "admin", admin: true)

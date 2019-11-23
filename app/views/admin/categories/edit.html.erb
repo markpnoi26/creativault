@@ -1,7 +1,21 @@
-<h1>Edit Category</h1>
-<%= form_for(@category, url: admin_category_path(@category), html: {method: "patch"}) do |f| %>
-<%= f.label("Category Name") %>
-<%= f.text_field :name %>
-<%= f.submit("Edit Category") %>
-<% end %>
-<p><%= button_to('Delete Category', admin_category_path(@category), {method: "delete"}) %></p>
+
+<div class="w3-modal-content w3-margin-top" style="max-width:600px">
+  <div class="w3-white w3-margin">
+    <div class="w3-container w3-white w3-margin-top">
+      <div class="w3-center">
+        <h3>Edit Category</h3>
+      </div>
+      <div>
+        <%= form_for(@category, url: admin_category_path(@category), html: {method: "patch"}) do |f| %>
+        <br>
+        <%= f.label("Category Name:") %>
+        <br>
+        <%= f.text_field(:name, class: "w3-input w3-border", placeholder: "Category Name") %>
+        <br>
+        <%= f.submit("Edit Category", class: "w3-button w3-block w3-blue") %>
+        <%end %>
+        <%= button_to('Delete Category', admin_category_path(@category), {method: "delete", class:"w3-button w3-block w3-red"}) %>
+        </div>
+      </div>
+    </div>
+  <hr>

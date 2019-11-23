@@ -1,6 +1,22 @@
-<h1>Check out all the Creators</h1>
-<h2> <%= flash[:edit_error] if flash[:edit_error] %></h2>
-<% @users.each do |user|%>
-  <h2><%= user.name if user.profile %></h2>
-  <%= link_to(image_tag(user.profile_image, size:"50x50", alt: "no image"), user_path(user)) if user.profile %>
-<% end %>
+<div class="w3-content" style="max-width:800px">
+  <div class="w3-row w3-padding">
+    <div class="w3-white w3-margin">
+      <div class="w3-container w3-padding w3-black">
+        <h1 class="w3-center"><%= "Check out all the Creators" unless @specific_user %></h1>
+        <h2 class="w3-red"> <%= flash[:edit_error] if flash[:edit_error] %></h2>
+      </div>
+      <% @users.each do |user| %>
+      <ul class="w3-ul w3-hoverable w3-white">
+        <li class="w3-padding-16">
+          <%=image_tag(user.profile.image, size: "50x50", class: "w3-left w3-margin-right", style:"width:50px") %>
+          <span class="w3-large"><%=link_to(user.name, user_path(user)) %></span>
+          <br>
+          <span>Joined: <%= user.created_at.strftime("%A, %B %e, %Y") %></span>
+          <br>
+        </li>
+      </ul>
+      <% end %>
+    </div>
+    <hr>
+  </div>
+</div>

@@ -1,6 +1,20 @@
-<h1>New Category</h1>
-<%= form_for(@category, url: admin_categories_path, html: {method: "post"}) do |f| %>
-<%= f.label("Category Name") %>
-<%= f.text_field :name %>
-<%= f.submit("Create New Category") %>
-<% end %>
+<div class="w3-modal-content w3-margin-top" style="max-width:600px">
+  <div class="w3-white w3-margin">
+    <div class="w3-container w3-white w3-margin-top">
+      <div class="w3-center">
+        <h3>New Category</h3>
+      </div>
+      <div>
+        <%= form_for(@category, url: admin_categories_path, html: {method: "post"}) do |f| %>
+        <br>
+        <%= f.label("Category Name:") %>
+        <br>
+        <%= f.text_field(:name, class: "w3-input w3-border", placeholder: "Category Name") %>
+        <br>
+        <%= f.submit("Create New Category", class: "w3-button w3-block w3-blue") %>
+        <%end %>
+        <%= button_to("Back to Categories", admin_categories_path, {method: "get", class:"w3-button w3-block w3-indigo"}) %>
+        </div>
+      </div>
+    </div>
+  <hr>

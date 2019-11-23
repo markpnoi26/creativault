@@ -1,13 +1,26 @@
-<h1> Admin Features: </h1>
-<p> As an admin, you can: edit creations, edit profiles, add/edit/delete categories, and see flagged posts.</p>
-<p> As an admin, you cannot: create new creations for other users, and create new profiles for other creators.</p>
+<div class="w3-content" style="max-width:800px">
+  <div class="w3-row w3-padding">
+    <div class="w3-white w3-margin">
+      <div class="w3-container w3-padding w3-black">
+        <h1 class="w3-center"><%= "Admin Features:"%></h1>
+        <h2 class="w3-red"> <%= flash[:edit_error] if flash[:edit_error] %></h2>
+        <p> As an admin, you can: edit creations, edit profiles, add/edit/delete categories, and see posts flag number.</p>
+        <p> You cannot: create new creations for other creators, and create new profiles for other creators.</p>
+      </div>
+      <h2><%= button_to("Create New Category", new_admin_category_path, {method: "get", class: "w3-button w3-block w3-blue w3-border"}) %></h2>
+      <% @categories.each do |category| %>
+      <ul class="w3-ul w3-hoverable w3-white">
+        <li class="w3-padding-16">
+          <h5><%= category.name %></h5>
+          <span>Created: <%= category.created_at.strftime("%A, %B %e, %Y") %></span>
+          <br>
+          <span class="w3-large"><%=link_to("Edit", edit_admin_category_path(category)) %></span>
 
-<h1>Categories: </h1>
-<ol>
-  <% @categories.each do |category| %>
-  <li><%= category.name %> <%= link_to("Edit", edit_admin_category_path(category)) %></li>
-  <% end %>
-</ol>
-
-
-<h2><%= link_to("Create New Category", new_admin_category_path) %></h2>
+          <br>
+        </li>
+      </ul>
+      <% end %>
+    </div>
+    <hr>
+  </div>
+</div>

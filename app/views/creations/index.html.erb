@@ -1,32 +1,38 @@
-<h1><%= "Everyone's Creation" unless @user %></h1>
-<h1><%= "All Creations by #{@specific_user.name}" if @specific_user %></h1>
-
-<div>
-  <h3>Filter Creations:</h3>
-  <% if @specific_user %>
-    <%= form_tag("/users/#{@specific_user.id}/creations", method: "get") do %>
-      <%= select_tag "category", options_from_collection_for_select(@category, "id", "name"), include_blank: true %>
-      <%= submit_tag "Filter" %>
-    <% end %>
-  <% else %>
-    <%= form_tag("/creations", method: "get") do %>
-      <%= select_tag "category", options_from_collection_for_select(@category, "id", "name"), include_blank: true %>
-      <%= submit_tag "Filter" %>
-    <% end %>
-  <% end %>
-</div>
-
-<!-- Will need to refactor for sure! This thing is Ugly! -->
-
-<% @creations.each do |creation| %>
-  <div>
-    <h3><%=link_to(creation.title, creation_path(creation)) %></h3>
-    <%=image_tag(creation.image, size: "40x40") %>
-    <% if @user.admin  %>
-    <ul>
-      <li>Loved: <%= creation.loved_by.count %></li>
-      <li>Flagged: <%= creation.flagged_by.count %></li>
-    </ul>
-    <% end %>
+<div class="w3-content" style="max-width:800px">
+  <div class="w3-row w3-padding">
+    <div class="w3-white w3-margin">
+      <div class="w3-container w3-padding w3-black">
+        <h1 class="w3-center"><%= "Everyone's Creation" unless @specific_user %></h1>
+        <h1 class="w3-center"><%= "All Creations by #{@specific_user.name}" if @specific_user %></h1>
+        <h3>Filter Creations:</h3>
+        <% if @specific_user %>
+          <%= form_tag("/users/#{@specific_user.id}/creations", method: "get") do %>
+            <%= select_tag "category", options_from_collection_for_select(@category, "id", "name"), include_blank: true %>
+            <%= submit_tag "Filter" %>
+          <% end %>
+        <% else %>
+          <%= form_tag("/creations", method: "get") do %>
+            <%= select_tag "category", options_from_collection_for_select(@category, "id", "name"), include_blank: true %>
+            <%= submit_tag "Filter" %>
+          <% end %>
+        <% end %>
+      </div>
+      <% @creations.each do |creation| %>
+      <ul class="w3-ul w3-hoverable w3-white">
+        <li class="w3-padding-16">
+          <%=image_tag(creation.image, size: "40x40", class: "w3-left w3-margin-right", style:"width:50px") %>
+          <span class="w3-large"><%=link_to(creation.title, creation_path(creation)) %></span>
+          <br>
+          <span>Created: <%= creation.created_at.strftime("%A, %B %e, %Y") %></span>
+          <br>
+          <% if @user.admin %>
+          <span>Loved: <%= creation.loved_by.count %></span>
+          <span>Flagged: <%= creation.flagged_by.count %></span>
+          <% end %>
+        </li>
+      </ul>
+      <% end %>
+    </div>
+    <hr>
   </div>
-<% end %>
+</div>
