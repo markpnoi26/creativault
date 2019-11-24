@@ -15,6 +15,12 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find_by_id(params[:id])
+    creations = @category.creations
+    creations.each do |creation|
+      # sets to (none) category
+      creation.category = Category.find_by_id(id: 0)
+      creation.save
+    end
     @category.delete
     redirect_to(admin_categories_path)
   end

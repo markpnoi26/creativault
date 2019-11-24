@@ -12,7 +12,7 @@
         <br>
         <%= f.text_field(:name, class: "w3-input w3-border", placeholder: "Category Name") %>
         <br>
-        <%= f.submit("Edit Category", class: "w3-button w3-block w3-blue") %>
+        <%= f.submit("Update Category", class: "w3-button w3-block w3-blue") %>
         <%end %>
         <%= button_to('Delete Category', admin_category_path(@category), {method: "delete", class:"w3-button w3-block w3-red"}) %>
         </div>
