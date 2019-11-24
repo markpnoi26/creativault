@@ -20,7 +20,7 @@
       <% @creations.each do |creation| %>
       <ul class="w3-ul w3-hoverable w3-white">
         <li class="w3-padding-16">
-          <%=image_tag(creation.image, size: "40x40", class: "w3-left w3-margin-right", style:"width:50px") %>
+          <%=image_tag(creation.image, class: "w3-left w3-margin-right", style:"width:50px") %>
           <span class="w3-large"><%=link_to(creation.title, creation_path(creation)) %></span>
           <br>
           <span>Created: <%= creation.created_at.strftime("%A, %B %e, %Y") %></span>

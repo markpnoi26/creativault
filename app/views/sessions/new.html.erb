@@ -12,9 +12,10 @@
       <%= f.label("Password:") %>
       <%= f.password_field(:password, class: "w3-input w3-border", placeholder: "Enter password") %>
       <br>
-      <%= f.submit("Sign In", class: "w3-button w3-block w3-blue w3-margin") %>
+    </div>
+      <%= f.submit("Sign In", class: "w3-button w3-block w3-blue w3-margin-top") %>
       <%end %>
-      <%= button_to('Google Sign In', "/auth/google_oauth2", {class: "w3-button w3-block w3-light-grey w3-margin"})%>
-      <%= button_to('or Sign Up', new_user_path, {method: "get", class: "w3-button w3-block w3-light-grey w3-margin"})%>
+      <%= button_to('Google Sign In', "/auth/google_oauth2", {class: "w3-button w3-block w3-light-grey w3-margin-top"})%>
+      <%= button_to('or Sign Up', new_user_path, {method: "get", class: "w3-button w3-block w3-light-grey w3-margin-top"})%>
   </div>
 </div>

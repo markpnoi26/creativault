@@ -24,10 +24,13 @@
       <%= f.label(:password_confirmation) %>
       <%= f.password_field(:password_confirmation, class: "w3-input w3-border", placeholder: "Password Confirmation") %>
       <br>
-      <%= f.submit("Create Account", class: "w3-button w3-block w3-blue w3-margin") %>
+    </div>
+
+      <%= f.submit("Create Account", class: "w3-button w3-block w3-blue") %>
       <%end %>
 
-      <%= button_to('Already have an Account? Sign in', root_path, {method: "get", class: "w3-button w3-block w3-margin"}) unless user_currently_logged_in%>
+      <%= button_to('Already have an Account? Sign in', root_path, {method: "get", class: "w3-button w3-block w3-border w3-margin-top"}) unless user_currently_logged_in%>
 
     </div>
   </div>
+</div>

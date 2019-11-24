@@ -18,7 +18,7 @@
       <div class="w3-center">
         <h3><%= @creation.title %></h3>
         <h5>Created on <span class="w3-opacity"> <%= @creation.created_at.strftime("%A, %B %e, %Y") %></span></h5>
-        <h5>by: <%= @creation.user.name %> <%= image_tag(@creation.user.profile_image, size:"50x50")%></span></h5>
+        <h5>by: <%= @creation.user.name %> <%= link_to(image_tag(@creation.user.profile_image, width:"50px"), user_path(@creation.user))%></span></h5>
       </div>
       <div class="w3-justify">
         <%= image_tag(@creation.image.variant(combine_options: { resize: "1200x1200>", background: "grey", gravity: "center"}), class: "w3-image w3-center", width: "1200", height: "1200") %>
@@ -27,11 +27,11 @@
           <%= button_to('Love!', loved_path(@creation), {method: "post", class: "w3-button w3-block w3-blue w3-border"}) unless @user == @creation.user || @user.loved.include?(@creation)%>
 
           <%= button_to('Flag', flagged_path(@creation), {method: "post", class: "w3-button w3-block w3-red w3-border"}) unless @user == @creation.user || @user.flagged.include?(@creation)%>
-          <h3><%= "(Loved by you)" if @user.loved.include?(@creation)%> </h3>
-          <h3><%= "(Flagged by You)" if @user.flagged.include?(@creation)%> </h3>
+          <p><%= "(Loved by you)" if @user.loved.include?(@creation)%> </p>
+          <p><%= "(Flagged by You)" if @user.flagged.include?(@creation)%> </p>
         </p>
         <p class="w3-center">
-          <button class="w3-button w3-black" id="myBtn"><b>Loved by:  </b> <span class="w3-tag w3-white"><%= @creation.loved_by.count %></span></button></p>
+          <button class="w3-button w3-black" id="myBtn"><b>Loved:  </b> <span class="w3-tag w3-white"><%= @creation.loved_by.count %></span></button></p>
         <p class="w3-clear"></p>
       </div>
     </div>
