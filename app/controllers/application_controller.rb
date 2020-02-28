@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless session[:user_id]
       flash[:error] = "You must be signed in."
-      redirect_to(new_session_path)
+      redirect_to new_session_path
     end
   end
 
@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
     @user = current_user
     unless @user.admin
       flash[:error] = "You do not have admin privilages."
-      redirect_to(user_path(@user))
+      redirect_to user_path(@user)
     end
   end
-  
+
 end

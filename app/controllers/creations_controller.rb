@@ -27,7 +27,7 @@ class CreationsController < ApplicationController
     @user = current_user
     if !@user.profile
       flash[:errors] = ['You must have a profile to Create Something.']
-      redirect_to(new_user_profile_path(@user))
+      redirect_to new_user_profile_path(@user)
     end
     @creation = Creation.new(user: current_user)
   end
@@ -38,37 +38,37 @@ class CreationsController < ApplicationController
     @creation.user = current_user
     if @creation.valid?
       @creation.save
-      redirect_to(creation_path(@creation))
+      redirect_to creation_path(@creation)
     else
       flash[:errors] = @creation.errors.full_messages
-      redirect_to(new_user_creation_path(current_user))
+      redirect_to new_user_creation_path(current_user)
     end
   end
 
   def edit
     @user = current_user
     @creation = creation_by_id
-    redirect_to(creation_path(@creation)) unless @user == @creation.user || @user.admin
+    redirect_to creation_path(@creation) unless @user == @creation.user || @user.admin
   end
 
   def update
     @creation = creation_by_id
     @creation.update(creation_params)
-    redirect_to(creation_path(@creation))
+    redirect_to creation_path(@creation)
   end
 
   def update_heart_count
     @user = current_user
     @creation = creation_by_id
     @user.loved << @creation unless @user.loved.include?(@creation)
-    redirect_to(creation_path(@creation))
+    redirect_to creation_path(@creation)
   end
 
   def update_flag_count
     @user = current_user
     @creation = creation_by_id
     @user.flagged << @creation unless @user.flagged.include?(@creation)
-    redirect_to(creation_path(@creation))
+    redirect_to creation_path(@creation)
   end
 
   def destroy
