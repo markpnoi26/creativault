@@ -10,10 +10,10 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      redirect_to(new_user_profile_path(@user))
+      redirect_to new_user_profile_path(@user)
     else
       flash[:errors] = @user.errors.full_messages
-      redirect_to(new_user_path)
+      redirect_to new_user_path
     end
   end
 
@@ -24,13 +24,18 @@ class UsersController < ApplicationController
     # pry
     if !@user.profile
       flash[:errors] = ['You must have your own profile to view others\'']
-      redirect_to(new_user_profile_path(@user))
+      redirect_to new_user_profile_path(@user)
     else
       @profile = Profile.find_by_user_id(User.find_by_id(params[:id]))
     end
   end
 
   def index
+    @user = current_user
+    if !@user.profile
+      flash[:errors] = ['You must have your own profile to view others\'']
+      redirect_to new_user_profile_path(@user)
+    end
     @users = User.all
   end
 
