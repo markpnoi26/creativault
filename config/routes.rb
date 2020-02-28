@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root "sessions#new"
 
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  # get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
   get 'sessions/new', to: 'sessions#new', as: 'new_session'
